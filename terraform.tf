@@ -1,10 +1,10 @@
 terraform {
 
   cloud {
-    organization = "CG_Tokyo"
+    organization = "CG_mumbai"
 
     workspaces {
-      name = "Tokyo-cli"
+      name = "mumbai-cli"
     }
   }
 }

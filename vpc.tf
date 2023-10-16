@@ -2,7 +2,7 @@
 ################### Start - AWS VPC ###################
 #######################################################
 
-resource "aws_vpc" "tokyo-vpc" {
+resource "aws_vpc" "mumbai-vpc" {
   cidr_block           = var.vpc_CIDR
   instance_tenancy     = var.instanceTenancy
   enable_dns_support   = var.dnsSupport
@@ -13,44 +13,44 @@ resource "aws_vpc" "tokyo-vpc" {
 }
 
 # Create Internet Gateway
-resource "aws_internet_gateway" "tokyo-igw" {
-  vpc_id = aws_vpc.tokyo-vpc.id
+resource "aws_internet_gateway" "mumbai-igw" {
+  vpc_id = aws_vpc.mumbai-vpc.id
   tags = {
     Name = var.internet-gateway
   }
 }
 
 # Create Route Tables
-resource "aws_route_table" "tokyo-public-route" {
-  vpc_id = aws_vpc.tokyo-vpc.id
+resource "aws_route_table" "mumbai-public-route" {
+  vpc_id = aws_vpc.mumbai-vpc.id
   tags = {
     Name = var.route-table["public"]
   }
 }
 
 # Create Internet route access
-resource "aws_route" "tokyo-internet-route" {
-  route_table_id         = aws_route_table.tokyo-public-route.id
+resource "aws_route" "mumbai-internet-route" {
+  route_table_id         = aws_route_table.mumbai-public-route.id
   destination_cidr_block = var.allIPsCIDRblock
-  gateway_id             = aws_internet_gateway.tokyo-igw.id
+  gateway_id             = aws_internet_gateway.mumbai-igw.id
 }
 
 # Create Subnets
 resource "aws_subnet" "private" {
   count                   = length(var.private_subnet)
-  vpc_id                  = aws_vpc.tokyo-vpc.id
+  vpc_id                  = aws_vpc.mumbai-vpc.id
   cidr_block              = var.private_subnet[count.index]
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = var.mapPublicIP
   tags = {
-    Name        = "tokyo-subnets-${count.index}"
+    Name        = "mumbai-subnets-${count.index}"
   }
 }
 
 # Create Network Access Control Lists
-resource "aws_network_acl" "tokyo-nacl" {
+resource "aws_network_acl" "mumbai-nacl" {
   count  = length(var.private_subnet)
-  vpc_id = aws_vpc.tokyo-vpc.id
+  vpc_id = aws_vpc.mumbai-vpc.id
   subnet_ids = [aws_subnet.private[count.index].id]
     # allow ingress HTTP from port  80 all IPs
   ingress {
@@ -72,14 +72,14 @@ resource "aws_network_acl" "tokyo-nacl" {
     to_port    = 65535
   }
     tags = {
-      Name = "tokyo-sg-${count.index}"
+      Name = "mumbai-sg-${count.index}"
     }
   }
 
 # Create Security Groups
-resource "aws_security_group" "tokyo-securitygroup" {
+resource "aws_security_group" "mumbai-securitygroup" {
   count  = 2
-  vpc_id = aws_vpc.tokyo-vpc.id
+  vpc_id = aws_vpc.mumbai-vpc.id
 
   # allow ingress HTTP from port  80 all IPs
   ingress {
@@ -120,15 +120,15 @@ resource "aws_security_group" "tokyo-securitygroup" {
     protocol    = "tcp"
   }
   tags = {
-    Name = "tokyo-sg-${count.index}"
+    Name = "mumbai-sg-${count.index}"
   }
 }
 
 # Associate Route Tables with Subnets
-resource "aws_route_table_association" "tokyo-rt-association" {
+resource "aws_route_table_association" "mumbai-rt-association" {
   count          = 2
   subnet_id      = aws_subnet.private[count.index].id
-  route_table_id = aws_route_table.tokyo-public-route.id
+  route_table_id = aws_route_table.mumbai-public-route.id
 }
 
 #####################################################
