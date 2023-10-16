@@ -1,10 +1,9 @@
 terraform {
-
   cloud {
-    organization = "CG_mumbai"
+    organization = "Satish_Terraform"
 
     workspaces {
-      name = "mumbai-cli"
+      name = "Terraform_Final"
     }
   }
 }
