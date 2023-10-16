@@ -10,7 +10,7 @@ terraform {
 }
 
 provider "aws" {
-  region = "ap-northeast-1"
+  region = "ap-south-1"
 }
 resource "aws_instance" "example" {
   ami           = "ami-0a2e10c1b874595a1"

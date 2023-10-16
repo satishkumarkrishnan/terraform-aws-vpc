@@ -5,7 +5,7 @@ variable "ami" {
 
 variable "region" {
   description = "AWS region"
-  default     = "ap-northeast-1"
+  default     = "ap-south-1"
 }
 
 variable "instance_type" {
@@ -121,8 +121,8 @@ variable "dnsHostNames" {
 variable "azs" {
   type = map(string)
   default = {
-    "az1" = "ap-northeast-1a"
-    "az2" = "ap-northeast-1c"
+    "az1" = "ap-south-1a"
+    "az2" = "ap-south-1c"
   }
 }
 
