@@ -1,6 +1,6 @@
 variable "ami" {
   type    = string
-  default = "ami-0353784d9a6017aa6"
+  default = "ami-0a2e10c1b874595a1"
 }
 
 variable "region" {
@@ -20,7 +20,7 @@ variable "instance_name" {
 
 variable "vpc" {
   type    = string
-  default = "mumbai Virtual Private Cloud"
+  default = "tokyo Virtual Private Cloud"
 }
 variable "vpc_CIDR" {
   default = "10.0.0.0/16"
@@ -38,17 +38,17 @@ variable "private_subnet" {
 variable "acl" {
   type = map(string)
   default = {
-    "vpc"     = "mumbai VPC ACL"
-    "public"  = "mumbai Private ACL"
-    "private" = "mumbai Private ACL"
+    "vpc"     = "tokyo VPC ACL"
+    "public"  = "tokyo Private ACL"
+    "private" = "tokyo Private ACL"
   }
 }
 #Create security groups dynamically
 /*variable "security-group" {
   type = map(string)
   default = {
-    "frontend" = "mumbai Frontend Security Group"
-    "backend"  = "mumbai Backend Security Group"
+    "frontend" = "tokyo Frontend Security Group"
+    "backend"  = "tokyo Backend Security Group"
   }
 }
 */
@@ -96,13 +96,13 @@ variable "egress_rule" {
 
 variable "internet-gateway" {
   type    = string
-  default = "mumbai Internet Gateway"
+  default = "tokyo Internet Gateway"
 }
 
 variable "route-table" {
   type = map(string)
   default = {
-    "public" = "mumbai Public Route Table"
+    "public" = "tokyo Public Route Table"
   }
 }
 
