@@ -34,6 +34,6 @@ output "vpc_be_sg" {
   value = aws_security_group.tokyo-securitygroup[1].id
 }
 
-output "vpc_az1" {
+output "vpc_az" {
   value = data.aws_availability_zones.available.names[*] 
 }
