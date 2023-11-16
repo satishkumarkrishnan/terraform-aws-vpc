@@ -35,9 +35,5 @@ output "vpc_be_sg" {
 }
 
 output "vpc_az1" {
-  value = data.aws_availability_zones.available[0].id
-}
-
-output "vpc_az2" {
-  value = data.aws_availability_zones.available[1].id
+  value = data.aws_availability_zones.available.names[*] 
 }
