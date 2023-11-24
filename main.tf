@@ -1,3 +1,13 @@
+terraform {
+  required_version = ">= 1.0.0, < 2.0.0"
+
+  required_providers {
+    aws = {
+      source  = "hashicorp/aws"
+      version = "~> 5.0.0"
+    }
+  }
+}
 #######################################################
 ################### Start - AWS VPC ###################
 #######################################################
@@ -110,6 +120,15 @@ resource "aws_security_group" "tokyo-securitygroup" {
     from_port   = 22
     to_port     = 22
     protocol    = "tcp"
+  }
+
+# Allow ingress for EFS mount target
+  ingress {
+  description = "EFS mount target"
+  from_port   = 2049
+  to_port     = 2049
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
   }
 
   # allow egress ephemeral ports to all IPs
