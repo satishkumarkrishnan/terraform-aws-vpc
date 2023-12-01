@@ -122,8 +122,16 @@ resource "aws_security_group" "tokyo-securitygroup" {
     protocol    = "tcp"
   }
 
-# Allow ingress for EFS mount target
+# Allow ingress and egress for EFS mount target
   ingress {
+  description = "EFS mount target"
+  from_port   = 2049
+  to_port     = 2049
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   egress {
   description = "EFS mount target"
   from_port   = 2049
   to_port     = 2049
