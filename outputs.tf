@@ -2,8 +2,13 @@ output "vpc_id" {
   value = aws_vpc.tokyo-vpc.id
 }
 
+output "cidr_block" {
+  value = aws_vpc.tokyo-vpc.cidr_block
+}
+
 output "vpc_fe_subnet" {
   value = aws_subnet.private[0]
+  
 }
 
 output "vpc_be_subnet" {
