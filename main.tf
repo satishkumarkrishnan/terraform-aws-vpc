@@ -12,6 +12,16 @@ terraform {
 ################### Start - AWS VPC ###################
 #######################################################
 
+resource "aws_default_vpc" "default-tokyo-vpc" {
+  cidr_block           = var.vpc_CIDR
+  instance_tenancy     = var.instanceTenancy
+  enable_dns_support   = var.dnsSupport
+  enable_dns_hostnames = var.dnsHostNames
+  tags = {
+    Name = var.vpc
+  }
+}
+
 resource "aws_vpc" "tokyo-vpc" {
   cidr_block           = var.vpc_CIDR
   instance_tenancy     = var.instanceTenancy
