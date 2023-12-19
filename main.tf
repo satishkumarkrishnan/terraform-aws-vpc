@@ -13,10 +13,10 @@ terraform {
 #######################################################
 
 resource "aws_default_vpc" "default-tokyo-vpc" {
-  cidr_block           = var.vpc_CIDR
-  instance_tenancy     = var.instanceTenancy
-  enable_dns_support   = var.dnsSupport
-  enable_dns_hostnames = var.dnsHostNames
+  #cidr_block           = var.vpc_CIDR
+  #instance_tenancy     = var.instanceTenancy
+  #enable_dns_support   = var.dnsSupport
+  #enable_dns_hostnames = var.dnsHostNames
   tags = {
     Name = var.vpc
   }
@@ -63,7 +63,6 @@ resource "aws_default_subnet" "tokyo_default_az1" {
    tags = {
     Name        = "tokyo-subnets-default"
   }
-  depends_on = [aws_vpc.tokyo-vpc.id]
 }
 
 # Create Subnets
