@@ -13,10 +13,7 @@ terraform {
 #######################################################
 
 resource "aws_default_vpc" "default-tokyo-vpc" {
-  #cidr_block           = var.vpc_CIDR
-  #instance_tenancy     = var.instanceTenancy
-  #enable_dns_support   = var.dnsSupport
-  #enable_dns_hostnames = var.dnsHostNames
+ force_destroy = "true"
   tags = {
     Name = var.vpc
   }
@@ -59,7 +56,7 @@ resource "aws_route" "tokyo-internet-route" {
 
 resource "aws_default_subnet" "tokyo_default_az1" {
   availability_zone = "ap-northeast-1a"
-
+  force_destroy = "true"
    tags = {
     Name        = "tokyo-subnets-default"
   }
