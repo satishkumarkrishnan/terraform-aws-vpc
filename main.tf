@@ -63,7 +63,7 @@ resource "aws_default_subnet" "tokyo_default_az1" {
    tags = {
     Name        = "tokyo-subnets-default"
   }
-  depends_on = [aws_default_vpc.default-tokyo-vpc.id]   
+  depends_on = [aws_default_vpc.default-tokyo-vpc]
 }
 
 # Create Subnets
