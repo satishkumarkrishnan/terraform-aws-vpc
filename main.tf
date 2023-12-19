@@ -46,12 +46,20 @@ resource "aws_route" "tokyo-internet-route" {
 }
 
 # Create Subnets
+resource "aws_default_subnet" "tokyo_default_az1" {
+  availability_zone = data.aws_availability_zones.available.names[count.index]
+
+   tags = {
+    Name        = "tokyo-subnets-${count.index}"
+  }
+}
 resource "aws_subnet" "private" {
   count                   = length(var.private_subnet)
   vpc_id                  = aws_vpc.tokyo-vpc.id
   cidr_block              = var.private_subnet[count.index]
   availability_zone       = data.aws_availability_zones.available.names[count.index]
   map_public_ip_on_launch = var.mapPublicIP
+  
   tags = {
     Name        = "tokyo-subnets-${count.index}"
   }
