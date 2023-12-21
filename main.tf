@@ -14,22 +14,6 @@ terraform {
 
 # Create Default VPC
 
-resource "aws_default_vpc" "default-tokyo-vpc" {
- force_destroy = "true"
-  tags = {
-    Name = var.vpc
-  }
-}
-
-# Create Default Subnet
-
-resource "aws_default_subnet" "tokyo_default_az1" {
-  availability_zone = "ap-northeast-1a"
-  force_destroy = "true"
-   tags = {
-    Name        = "tokyo-subnets-default"
-  }  
-}
 resource "aws_vpc" "tokyo-vpc" {
   cidr_block           = var.vpc_CIDR
   instance_tenancy     = var.instanceTenancy
