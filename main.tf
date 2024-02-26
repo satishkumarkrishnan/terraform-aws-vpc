@@ -12,7 +12,7 @@ terraform {
 ################### Start - AWS VPC ###################
 #######################################################
 
-# Create Default VPC
+# Create VPC
 
 resource "aws_vpc" "tokyo-vpc" {
   cidr_block           = var.vpc_CIDR
@@ -21,6 +21,7 @@ resource "aws_vpc" "tokyo-vpc" {
   enable_dns_hostnames = var.dnsHostNames
   tags = {
     Name = var.vpc
+    create_igw      = false
   }
 }
 
