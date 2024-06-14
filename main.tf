@@ -145,7 +145,22 @@ resource "aws_security_group" "tokyo-securitygroup" {
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   }
+# Allow ingress and egress for Data Lineage
+  ingress {
+  description = "Data Lineage"
+  from_port   = 5000
+  to_port     = 5000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  }
 
+   egress {
+  description = "Data Lineage"
+  from_port   = 5000
+  to_port     = 5000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  }
   # allow egress ephemeral ports to all IPs
   egress {
     cidr_blocks = [var.allIPsCIDRblock]
