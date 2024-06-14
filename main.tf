@@ -150,7 +150,7 @@ resource "aws_security_group" "tokyo-securitygroup" {
   description = "Data Lineage"
   from_port   = 5000
   to_port     = 5000
-  protocol    = "tcp"
+  protocol    = "http"
   cidr_blocks = ["0.0.0.0/0"]
   }
 
@@ -158,7 +158,7 @@ resource "aws_security_group" "tokyo-securitygroup" {
   description = "Data Lineage"
   from_port   = 5000
   to_port     = 5000
-  protocol    = "tcp"
+  protocol    = "http"
   cidr_blocks = ["0.0.0.0/0"]
   }
   # allow egress ephemeral ports to all IPs
