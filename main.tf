@@ -156,8 +156,8 @@ resource "aws_security_group" "tokyo-securitygroup" {
 
    egress {
   description = "EFS mount target"
-  from_port   = 5000
-  to_port     = 5000
+  from_port   = 8000
+  to_port     = 00
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   }
