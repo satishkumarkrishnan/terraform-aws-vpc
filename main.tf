@@ -145,6 +145,22 @@ resource "aws_security_group" "tokyo-securitygroup" {
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   }
+  # Allow ingress and egress for Data Lineage
+  ingress {
+  description = "Data Lineage Port"
+  from_port   = 5000
+  to_port     = 5000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  }
+
+   egress {
+  description = "EFS mount target"
+  from_port   = 5000
+  to_port     = 5000
+  protocol    = "tcp"
+  cidr_blocks = ["0.0.0.0/0"]
+  }
   # allow egress ephemeral ports to all IPs
   egress {
     cidr_blocks = [var.allIPsCIDRblock]
@@ -156,6 +172,7 @@ resource "aws_security_group" "tokyo-securitygroup" {
     Name = "tokyo-sg-${count.index}"
   }
 }
+
 
 # Associate Route Tables with Subnets
 resource "aws_route_table_association" "tokyo-rt-association" {
