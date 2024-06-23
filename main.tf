@@ -148,16 +148,16 @@ resource "aws_security_group" "tokyo-securitygroup" {
   # Allow ingress and egress for Data Lineage
   ingress {
   description = "Data Lineage Port"
-  from_port   = 8000
-  to_port     = 8000
+  from_port   = 5000
+  to_port     = 5000
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   }
 
    egress {
-  description = "EFS mount target"
-  from_port   = 8000
-  to_port     = 8000
+  description = "Data Lineage Port"
+  from_port   = 5000
+  to_port     = 5000
   protocol    = "tcp"
   cidr_blocks = ["0.0.0.0/0"]
   }
